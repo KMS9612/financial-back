@@ -19,30 +19,33 @@ export const createUser = async (req: Request, res: Response) => {
 };
 
 export const Login = async (req: Request, res: Response) => {
-  // req 정보 변수에 저장
-  const { email, password, password_hashed } = req.body;
+  try {
+    // req 정보 변수에 저장
+    const { email, password, password_hashed } = req.body;
 
-  const UserInfo = await User.findOne({ email });
-  const uid = UserInfo?.uid;
+    const UserInfo = await User.findOne({ email });
+    const uid = UserInfo?.uid;
 
-  // Token 발급
-  const token = generateAccessToken(email);
-  const refreshToken = generateRefreshToken(email);
-  // 비밀번호 매칭 로직
-  // hash(salt)된 비밀번호 비교
-  const isPasswordMatch = await bcryptjs.compare(password, password_hashed);
-  console.log("Compare이후");
+    // Token 발급
+    const token = generateAccessToken(email);
+    const refreshToken = generateRefreshToken(email);
+    // 비밀번호 매칭 로직
+    // hash(salt)된 비밀번호 비교
+    const isPasswordMatch = await bcryptjs.compare(password, password_hashed);
 
-  if (!isPasswordMatch) {
-    return res.status(400).json({ message: "비밀번호가 틀렸습니다." });
-  } else {
-    // 유저검증이 성공했다면 jwt token 발급
-    return res.status(201).send({
-      message: "로그인에 성공하였습니다.",
-      accessToken: token,
-      refreshToken: refreshToken,
-      uid: uid,
-    });
+    if (!isPasswordMatch) {
+      return res.status(400).json({ message: "비밀번호가 틀렸습니다." });
+    } else {
+      // 유저검증이 성공했다면 jwt token 발급
+      return res.status(201).send({
+        message: "로그인에 성공하였습니다.",
+        accessToken: token,
+        refreshToken: refreshToken,
+        uid: uid,
+      });
+    }
+  } catch (err) {
+    return res.status(401).json({ message: "로그인 실패", err: err });
   }
 };
 

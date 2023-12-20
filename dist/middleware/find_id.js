@@ -29,7 +29,6 @@ const findForLogin = (req, res, next) => __awaiter(void 0, void 0, void 0, funct
     const findEmail = yield userModel_1.User.findOne({
         email: req.body.email,
     });
-    console.log(findEmail);
     if (!findEmail) {
         return res.status(409).json({ message: "이메일이 존재하지 않습니다." });
     }
