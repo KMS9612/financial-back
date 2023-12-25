@@ -41,6 +41,7 @@ export const Login = async (req: Request, res: Response) => {
         message: "로그인에 성공하였습니다.",
         accessToken: token,
         refreshToken: refreshToken,
+        email: email,
         uid: uid,
       });
     }

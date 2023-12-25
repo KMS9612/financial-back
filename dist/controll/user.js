@@ -51,6 +51,7 @@ const Login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 message: "로그인에 성공하였습니다.",
                 accessToken: token,
                 refreshToken: refreshToken,
+                email: email,
                 uid: uid,
             });
         }
