@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import userRouter from "./router/userRouter";
 import editRouter from "./router/editRouter";
+import tokenRouter from "./router/tokenRouter";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
@@ -39,6 +40,7 @@ app.use((req, res, next) => {
 //router
 app.use(userRouter);
 app.use("/edit", editRouter);
+app.use("/token", tokenRouter);
 
 app.listen(port, () => {
   console.log("서버" + port + "에서 작동 중");
