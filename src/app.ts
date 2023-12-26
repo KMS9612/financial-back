@@ -5,6 +5,8 @@ import editRouter from "./router/editRouter";
 import tokenRouter from "./router/tokenRouter";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+
 dotenv.config();
 const app = express();
 const port = 5000;
@@ -28,6 +30,7 @@ app.use(
     credentials: true,
   })
 );
+
 // body-parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -36,6 +39,8 @@ app.use((req, res, next) => {
   console.log("Request body:", req.body);
   next();
 });
+// cookie-parser
+app.use(cookieParser());
 
 //router
 app.use(userRouter);

@@ -12,11 +12,11 @@ const verifyToken = (req, res, next) => {
         return res.status(401).json({ message: "토큰이 없습니다." });
     }
     const secretKey = process.env.CRYPTO_KEY || "jwt-secret-key";
-    jsonwebtoken_1.default.verify(token, secretKey, { clockTolerance: 30 }, (err, decoded) => {
+    const verifyOption = { clockTolerance: 30, debug: true };
+    jsonwebtoken_1.default.verify(token, secretKey, verifyOption, (err, decoded) => {
         if (err) {
             return res.sendStatus(401); // 토큰 만료에 대해 401(Unauthorized) 응답을 반환합니다.
         }
-        req.body.user = decoded;
         next();
     });
 };

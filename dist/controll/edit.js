@@ -63,14 +63,16 @@ const createTodayEdit = (req, res) => __awaiter(void 0, void 0, void 0, function
     }
 });
 exports.createTodayEdit = createTodayEdit;
-const fetchAllFinancial = (req, res) => {
+const fetchAllFinancial = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { email } = req.body;
-        const data = editModel_1.EditSchema.findOne({ email });
+        const { email } = req.query;
+        const data = yield editModel_1.EditSchema.findOne({ email });
         return res.status(200).json({ data: data });
     }
     catch (err) {
-        return res.status(401).json({ message: "유저 가계부 기록 불러오기 실패" });
+        return res
+            .status(401)
+            .json({ message: "유저 가계부 기록 불러오기 실패", err: err });
     }
-};
+});
 exports.fetchAllFinancial = fetchAllFinancial;

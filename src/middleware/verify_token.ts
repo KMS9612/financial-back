@@ -13,17 +13,11 @@ export const verifyToken = (
   }
 
   const secretKey: Secret = process.env.CRYPTO_KEY || "jwt-secret-key";
-
-  jwt.verify(
-    token,
-    secretKey,
-    { clockTolerance: 30 },
-    (err: any, decoded: any) => {
-      if (err) {
-        return res.sendStatus(401); // 토큰 만료에 대해 401(Unauthorized) 응답을 반환합니다.
-      }
-      req.body.user = decoded;
-      next();
+  const verifyOption = { clockTolerance: 30, debug: true };
+  jwt.verify(token, secretKey, verifyOption, (err: any, decoded: any) => {
+    if (err) {
+      return res.sendStatus(401); // 토큰 만료에 대해 401(Unauthorized) 응답을 반환합니다.
     }
-  );
+    next();
+  });
 };

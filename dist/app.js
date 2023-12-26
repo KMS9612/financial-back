@@ -10,6 +10,7 @@ const editRouter_1 = __importDefault(require("./router/editRouter"));
 const tokenRouter_1 = __importDefault(require("./router/tokenRouter"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = 5000;
@@ -35,6 +36,8 @@ app.use((req, res, next) => {
     console.log("Request body:", req.body);
     next();
 });
+// cookie-parser
+app.use((0, cookie_parser_1.default)());
 //router
 app.use(userRouter_1.default);
 app.use("/edit", editRouter_1.default);
