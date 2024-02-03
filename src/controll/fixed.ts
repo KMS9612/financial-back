@@ -24,7 +24,6 @@ export const createFixedData = async (req: Request, res: Response) => {
         message: "고정 지출 설정에 성공했습니다.",
       });
     } else {
-      console.log(CheckFixed);
       CheckFixed.income = income;
       CheckFixed.saving = saving;
       CheckFixed.fixed = fixed;
@@ -41,8 +40,13 @@ export const createFixedData = async (req: Request, res: Response) => {
 export const fetchFixedData = async (req: Request, res: Response) => {
   try {
     const { email } = req.query;
-    const targetData = await FixedSchema.findOne({ email });
+    const fixedData = await FixedSchema.findOne({ email });
+    console.log(fixedData);
 
-    
-  } catch (err) {}
+    return res.status(200).json({ fixedData });
+  } catch (err) {
+    return res
+      .status(400)
+      .json({ message: "고정비용 데이터 불러오기 실패", err });
+  }
 };

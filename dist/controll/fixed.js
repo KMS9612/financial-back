@@ -31,7 +31,6 @@ const createFixedData = (req, res) => __awaiter(void 0, void 0, void 0, function
             });
         }
         else {
-            console.log(CheckFixed);
             CheckFixed.income = income;
             CheckFixed.saving = saving;
             CheckFixed.fixed = fixed;
@@ -49,8 +48,14 @@ exports.createFixedData = createFixedData;
 const fetchFixedData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email } = req.query;
-        const targetData = yield fixedModel_1.FixedSchema.findOne({ email });
+        const fixedData = yield fixedModel_1.FixedSchema.findOne({ email });
+        console.log(fixedData);
+        return res.status(200).json({ fixedData });
     }
-    catch (err) { }
+    catch (err) {
+        return res
+            .status(400)
+            .json({ message: "고정비용 데이터 불러오기 실패", err });
+    }
 });
 exports.fetchFixedData = fetchFixedData;

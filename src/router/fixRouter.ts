@@ -1,10 +1,11 @@
 import express from "express";
-import { createFixedData } from "../controll/fixed";
+import { createFixedData, fetchFixedData } from "../controll/fixed";
+import { verifyToken } from "../middleware/verify_token";
 
 const router = express.Router();
 
-router.post("/createFixedData", createFixedData);
+router.post("/createFixedData", verifyToken, createFixedData);
 
-router.get("/fetchFixedData");
+router.get("/fetchFixedData", verifyToken, fetchFixedData);
 
 export default router;
