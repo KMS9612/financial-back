@@ -1,1 +1,2 @@
-web:node app.ts
+web:npm build
+web:npm start
