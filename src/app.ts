@@ -10,7 +10,8 @@ import cookieParser from "cookie-parser";
 
 dotenv.config();
 const app = express();
-const port = 8080;
+// HerokuPort연동을 위한 env.Port
+const port = process.env.PORT || 8080;
 
 // DB Connect
 mongoose
@@ -27,7 +28,7 @@ mongoose
 // CORS
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:3000/*"],
     credentials: true,
   })
 );
