@@ -29,8 +29,8 @@ mongoose
 app.use(
   cors({
     origin: [
-      "http://localhost:3000/",
-      "https://financial-ledger-ten.vercel.app/",
+      "http://localhost:3000",
+      "https://financial-ledger-ten.vercel.app",
     ],
     credentials: true,
   })
