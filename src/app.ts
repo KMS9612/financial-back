@@ -32,6 +32,7 @@ app.use(
       "http://localhost:3000",
       "https://financial-ledger-ten.vercel.app",
       "https://merry-lollipop-bda320.netlify.app",
+      "https://ggb-service.netlify.app",
     ],
     credentials: true,
   })
