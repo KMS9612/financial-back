@@ -31,6 +31,7 @@ app.use(
     origin: [
       "http://localhost:3000",
       "https://financial-ledger-ten.vercel.app",
+      "https://merry-lollipop-bda320.netlify.app/",
     ],
     credentials: true,
   })
