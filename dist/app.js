@@ -14,7 +14,8 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const port = 8080;
+// HerokuPort연동을 위한 env.Port
+const port = process.env.PORT || 8080;
 // DB Connect
 mongoose_1.default
     .connect(`mongodb+srv://kimdev9612:${process.env.DBKEY}@cluster0.2mck3wn.mongodb.net/?retryWrites=true&w=majority`)
@@ -26,7 +27,12 @@ mongoose_1.default
 });
 // CORS
 app.use((0, cors_1.default)({
-    origin: ["http://localhost:3000"],
+    origin: [
+        "http://localhost:3000",
+        "https://financial-ledger-ten.vercel.app",
+        "https://merry-lollipop-bda320.netlify.app",
+        "https://ggb-service.netlify.app",
+    ],
     credentials: true,
 }));
 // body-parser
@@ -47,3 +53,4 @@ app.use("/fix", fixRouter_1.default);
 app.listen(port, () => {
     console.log("서버" + port + "에서 작동 중");
 });
+// heroku github deploy
