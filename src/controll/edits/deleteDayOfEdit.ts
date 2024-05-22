@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { EditSchema } from "../model/editModel";
+import { EditSchema } from "../../model/editModel";
 
 export const deleteOneEdit = async (req: Request, res: Response) => {
   const { email, monthID, dayID } = req.body;
