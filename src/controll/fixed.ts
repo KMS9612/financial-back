@@ -15,22 +15,20 @@ export const createFixedData = async (req: Request, res: Response) => {
         fixed,
       });
 
-      await newFixed.save();
+      const savedData = await newFixed.save();
 
       return res.status(200).json({
-        income,
-        saving,
-        fixed,
+        savedData,
         message: "고정 지출 설정에 성공했습니다.",
       });
     } else {
       CheckFixed.income = income;
       CheckFixed.saving = saving;
       CheckFixed.fixed = fixed;
-      CheckFixed.save();
+      const savedData = CheckFixed.save();
       return res
         .status(200)
-        .json({ message: "고정 지출 수정에 성공했습니다." });
+        .json({ savedData, message: "고정 지출 수정에 성공했습니다." });
     }
   } catch (err) {
     return res.status(400).json({ message: err });
