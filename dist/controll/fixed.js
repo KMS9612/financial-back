@@ -22,11 +22,9 @@ const createFixedData = (req, res) => __awaiter(void 0, void 0, void 0, function
                 saving,
                 fixed,
             });
-            yield newFixed.save();
+            const savedData = yield newFixed.save();
             return res.status(200).json({
-                income,
-                saving,
-                fixed,
+                savedData,
                 message: "고정 지출 설정에 성공했습니다.",
             });
         }
@@ -34,10 +32,10 @@ const createFixedData = (req, res) => __awaiter(void 0, void 0, void 0, function
             CheckFixed.income = income;
             CheckFixed.saving = saving;
             CheckFixed.fixed = fixed;
-            CheckFixed.save();
+            const savedData = CheckFixed.save();
             return res
                 .status(200)
-                .json({ message: "고정 지출 수정에 성공했습니다." });
+                .json({ savedData, message: "고정 지출 수정에 성공했습니다." });
         }
     }
     catch (err) {
