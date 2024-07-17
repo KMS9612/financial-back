@@ -55,6 +55,11 @@ app.use("/edit", editRouter);
 app.use("/token", tokenRouter);
 app.use("/fix", fixedRouter);
 
+// aws LB healthCheck
+app.get("/", (req, res) => {
+  res.status(200).json({ message: "정상적으로 작동합니다." });
+});
+
 app.listen(port, () => {
   console.log("서버" + port + "에서 작동 중");
 });

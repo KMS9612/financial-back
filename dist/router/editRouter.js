@@ -14,6 +14,6 @@ const router = express_1.default.Router();
 router.post("/createEdit", verify_token_1.verifyToken, createTodayEdit_1.createTodayEdit);
 router.get("/fetchAllFinancial", verify_token_1.verifyToken, fetchAllFinancial_1.fetchAllFinancial);
 router.delete("/deleteOneEdit", verify_token_1.verifyToken, deleteDayOfEdit_1.deleteOneEdit);
-router.get("/fetchMonthEdit", fetchMonthEdit_1.fetchMonthEdit);
-router.get("/fetchOnePageEdit", fetchOnePageEdit_1.default);
+router.get("/fetchMonthEdit", verify_token_1.verifyToken, fetchMonthEdit_1.fetchMonthEdit);
+router.get("/fetchOnePageEdit", verify_token_1.verifyToken, fetchOnePageEdit_1.default);
 exports.default = router;

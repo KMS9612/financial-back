@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const editModel_1 = require("../../model/editModel");
+/* 요청받은 page를 10개 반환하는 API */
 function fetchOnePageEdit(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
